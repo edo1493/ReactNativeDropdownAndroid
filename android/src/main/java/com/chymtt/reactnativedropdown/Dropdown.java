@@ -19,6 +19,8 @@ public class Dropdown extends AppCompatSpinner {
     private Context mContext;
     private boolean firstEventFired = false;
     private int mSelected = 0;
+    private ArrayList<String> spinnerArray;
+    public ArrayAdapter<String> spinnerArrayAdapter;
 
     public Dropdown(ThemedReactContext context) {
         super(context, 0);
@@ -27,7 +29,7 @@ public class Dropdown extends AppCompatSpinner {
     }
 
     public void setValues(ReadableArray values) {
-        ArrayList<String> spinnerArray = new ArrayList<>();
+        spinnerArray = new ArrayList<>();
         for (int i = 0; i < values.size(); i++) {
             String type = values.getType(i).name();
             if ("String".equals(type)) {
@@ -49,20 +51,20 @@ public class Dropdown extends AppCompatSpinner {
                 }
             }
         }
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(mContext,
+        spinnerArrayAdapter = new ArrayAdapter<>(mContext,
                 android.R.layout.simple_spinner_item, spinnerArray);
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.setAdapter(spinnerArrayAdapter);
     }
 
-    public void setSelected(int selected) {
-        if (selected == mSelected) {
-            return;
-        }
-        mSelected = selected;
-        this.setSelection(mSelected);
-    }
+    public void setSelected(String selected) {
 
+      if (!selected.equals(null)) {
+        int spinnerPosition = spinnerArrayAdapter.getPosition(selected);
+        mSelected = spinnerPosition;
+        this.setSelection(spinnerPosition);
+      }
+    }
     private final AdapterView.OnItemSelectedListener ON_ITEM_SELECTED_LISTENER =
             new AdapterView.OnItemSelectedListener() {
                 @Override

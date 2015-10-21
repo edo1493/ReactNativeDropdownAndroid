@@ -29,7 +29,7 @@ class Dropdown extends React.Component {
 Dropdown.propTypes = {
   ...View.propTypes,
   values: PropTypes.array.isRequired,
-  selected: PropTypes.number,
+  selected: PropTypes.string,
   onChange: PropTypes.func
 };
 

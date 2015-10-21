@@ -21,7 +21,7 @@ public class DropdownManager extends SimpleViewManager<Dropdown> {
     @UIProp(UIProp.Type.ARRAY)
     public static final String PROP_VALUES = "values";
 
-    @UIProp(UIProp.Type.NUMBER)
+    @UIProp(UIProp.Type.STRING)
     public static final String PROP_SELECTED = "selected";
 
     @Override
@@ -33,7 +33,7 @@ public class DropdownManager extends SimpleViewManager<Dropdown> {
         }
 
         if (props.hasKey(PROP_SELECTED)) {
-            view.setSelected(props.getInt(PROP_SELECTED, 0));
+            view.setSelected(props.getString(PROP_SELECTED));
         }
     }
 }
