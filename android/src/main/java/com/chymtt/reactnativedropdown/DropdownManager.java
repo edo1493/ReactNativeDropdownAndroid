@@ -1,9 +1,9 @@
 package com.chymtt.reactnativedropdown;
 
-import com.facebook.react.uimanager.CatalystStylesDiffMap;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
-import com.facebook.react.uimanager.UIProp;
+import com.facebook.react.uimanager.ReactProp;
+import com.facebook.react.bridge.ReadableArray;
 
 public class DropdownManager extends SimpleViewManager<Dropdown> {
     public static final String REACT_CLASS = "DropdownAndroid";
@@ -18,6 +18,7 @@ public class DropdownManager extends SimpleViewManager<Dropdown> {
         return new Dropdown(context);
     }
 
+<<<<<<< HEAD
     @UIProp(UIProp.Type.ARRAY)
     public static final String PROP_VALUES = "values";
 
@@ -35,5 +36,15 @@ public class DropdownManager extends SimpleViewManager<Dropdown> {
         if (props.hasKey(PROP_SELECTED)) {
             view.setSelected(props.getString(PROP_SELECTED));
         }
+=======
+    @ReactProp(name = "values")
+    public void setValues(Dropdown view, ReadableArray values) {
+    view.setValues(values);
+    }
+
+    @ReactProp(name = "selected")
+    public void setSelected(Dropdown view, int selected) {
+    view.setSelected(selected);
+>>>>>>> upstream/master
     }
 }
