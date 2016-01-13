@@ -19,12 +19,9 @@ public class Dropdown extends AppCompatSpinner {
     private Context mContext;
     private boolean firstEventFired = false;
     private int mSelected = 0;
-<<<<<<< HEAD
     private ArrayList<String> spinnerArray;
     public ArrayAdapter<String> spinnerArrayAdapter;
-=======
     private int selected = 0;
->>>>>>> upstream/master
 
     public Dropdown(ThemedReactContext context) {
         super(context, 0);
@@ -33,11 +30,7 @@ public class Dropdown extends AppCompatSpinner {
     }
 
     public void setValues(ReadableArray values) {
-<<<<<<< HEAD
-        spinnerArray = new ArrayList<>();
-=======
-        ArrayList<String> spinnerArray = new ArrayList<String>();
->>>>>>> upstream/master
+        spinnerArray = new ArrayList<String>();
         for (int i = 0; i < values.size(); i++) {
             String type = values.getType(i).name();
             if ("String".equals(type)) {
@@ -59,33 +52,23 @@ public class Dropdown extends AppCompatSpinner {
                 }
             }
         }
-<<<<<<< HEAD
-        spinnerArrayAdapter = new ArrayAdapter<>(mContext,
-=======
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(mContext,
->>>>>>> upstream/master
-                android.R.layout.simple_spinner_item, spinnerArray);
+        spinnerArrayAdapter = new ArrayAdapter<String>(mContext,
+                      android.R.layout.simple_spinner_item, spinnerArray);
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         setAdapter(spinnerArrayAdapter);
         setSelection(mSelected);
     }
 
-<<<<<<< HEAD
     public void setSelected(String selected) {
-=======
-    public void setSelected(int selected) {
-        if (selected == mSelected && selected == this.selected) {
-            return;
-        }
-        mSelected = selected;
-        setSelection(mSelected);
-    }
->>>>>>> upstream/master
-
       if (!selected.equals(null)) {
-        int spinnerPosition = spinnerArrayAdapter.getPosition(selected);
-        mSelected = spinnerPosition;
-        this.setSelection(spinnerPosition);
+        if(spinnerArrayAdapter != null)
+        {
+          int spinnerPosition = spinnerArrayAdapter.getPosition(selected);
+          mSelected = spinnerPosition;
+        } else {
+          mSelected = 0;
+        }
+        setSelection(mSelected);
       }
     }
     private final AdapterView.OnItemSelectedListener ON_ITEM_SELECTED_LISTENER =
