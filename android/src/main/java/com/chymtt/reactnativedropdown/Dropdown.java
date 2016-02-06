@@ -67,6 +67,10 @@ public class Dropdown extends AppCompatSpinner {
 
       if (!selected.equals(null)) {
         strSelected = selected;
+        if(spinnerArrayAdapter != null)
+        {
+          setSelection(spinnerArrayAdapter.getPosition(strSelected));
+        }
       }
     }
 
